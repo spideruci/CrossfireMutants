@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2002-2020, the original author or authors.
+
+    This software is distributable under the BSD license. See the terms of the
+    BSD license in the documentation provided with this software.
+
+    https://opensource.org/licenses/BSD-3-Clause
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.jline</groupId>
+        <artifactId>jline-parent</artifactId>
+        <version>3.22.0</version>
+    </parent>
+
+    <artifactId>jline-reader</artifactId>
+    <name>JLine Reader</name>
+
+    <properties>
+        <automatic.module.name>org.jline.reader</automatic.module.name>
+    </properties>
+    <build>
+        <plugins>
+            <plugin>
+
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <!--                 <version>LATEST</version> -->
+                <version>1.0.0-SNAPSHOT</version>
+                <!--                <version>1.9.0</version>-->
+
+                <dependencies>
+
+                    <dependency>
+                        <groupId>org.pitest</groupId>
+                        <artifactId>pitest-junit5-plugin</artifactId>
+                        <!-- <version>0.15</version> -->
+                        <version>1.1.0</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.pitest</groupId>
+                        <artifactId>pitest-maven</artifactId>
+                        <version>1.0.0-SNAPSHOT</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <avoidCallsTo>inst.InstrumentationUtils</avoidCallsTo>
+                    <timeoutConstant>60000</timeoutConstant>
+                    <verbose>true</verbose>
+                    <failWhenNoMutations>false</failWhenNoMutations>
+                    <timestampedReports>false</timestampedReports>
+                    <fullMutationMatrix>true</fullMutationMatrix>
+                    <outputFormats>
+                        <outputFormat>XML</outputFormat>
+                        <outputFormat>HTML</outputFormat>
+                    </outputFormats>
+                    <jvmArgs>-ea,-XX:-OmitStackTraceInFastThrow</jvmArgs>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.15</version>
+        </dependency>
+        <dependency>
+            <groupId>com.thoughtworks.xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>1.4.13</version>
+        </dependency>
+        <dependency>
+            <groupId>org.zeroturnaround</groupId>
+            <artifactId>zt-zip</artifactId>
+            <version>1.15</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jline</groupId>
+            <artifactId>jline-terminal</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.9.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>
