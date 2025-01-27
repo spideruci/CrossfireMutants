@@ -2,16 +2,18 @@
 This package is designed to provide the implementation source code, and the dataset presented in our paper (**Leveraging Propagated Infection to Crossfire Mutants**), involving two separate experiments of classifying failing test runs and performing propagation analysis on passing test runs.
 Below is an overview of the contents of this package:
 
-- We include both the implementation and the dataset for identifying assertion-mutant killing pairs from failing test runs on mutants. This component categorizes test failures—as revealed propagation—into specific assertion failures or non-assertion failures.
+- We include both the implementation and the dataset for identifying assertion-mutant killing pairs from failing test runs on mutants. This component categorizes test failures—as revealed propagation—into specific assertion failures or non-assertion failures (experiment 1).
 - We provide the implementation and dataset for conducting a fine-grained propagation analysis for passing test runs, where we investigate the popularity and magnitude of propagation, the comprehensive alive mutant killing opportunities, and mutant crossfire techniques.
-  Specifically, we modified [PITest](https://pitest.org/) (a bytecode mutation testing tool for Java) to facilitate our experiments.
+  Specifically, we modified [PITest](https://pitest.org/) (a bytecode mutation testing tool for Java) to facilitate our experiments (experiment 2).
 - We include supplementary figures for RQ1 which include heatmaps for all subject projects.
 - We include a simple motivating real-life example as a result of our analysis to demonstrate the interesting cross-firing attribute of our approach.
-- we include an extreme real-life example from our analysis as in the Spotify-Web-API project, where an assertion-augmented test case kills **57** alive mutants all at once!
+- we include an extreme real-life example from our analysis as in the Spotify-Web-API project, where an assertion-amplified test case kills **57** alive mutants all at once!
 
 # Setup
 
 Running the complete analysis for each subject project can be time-consuming, ranging from approximately 2 hours to several weeks (as noted on page 6 of the paper). 
+This is because we do not optimize the analysis for speed, as our primary goal is to demonstrate the feasibility of our approach: our analysis is performed when mutation analysis is performed, for both killed and survived mutants.
+
 Additionally, the full analysis requires substantial disk space (up to 1TB). To mitigate these challenges for demonstration purposes, we provide Docker images pre-configured to run the analysis on a limited subset of mutants. 
 These Docker containers automate the steps of our analysis.
 For those interested in replicating our results in full, we have also made the source code, scripts, and build configurations available. 
@@ -21,14 +23,14 @@ However, please note that reproducing all experimental data may require several 
 
 **Hardware**: At least 10GB of free disk space for the Docker container. We provide Docker images compatible with both AMD and ARM-based architectures (e.g., MacBook with an M1 chip).
 
-**Software**: Docker and Python 3.
+**Software**: Docker and Python 3 installed on user machine; linux or macOS operating system.
 
 
 # Usage
 Our analysis consists of two separate experiments, one corresponding to RQ1 and the other to RQ2-4.
 The first experiment keeps track of the causes of mutant kills (assertion failures or non-assertion failures) and which assertion kills which mutants. 
 
-## Classifying test failures
+## Experiment 1: Classifying test failures
 This component classifies test failures (propagation being revealed) into specific assertion failures or non-assertion failures.
 We provide the implementation of source code under the directory `classifying-test-failures`.
 
@@ -87,9 +89,9 @@ docker cp exp1_amd:/commons-cli/project/target/csvData.csv .
 ```
 The csvData.csv file contains the raw data of the analysis rendering figures presented in RQ1.
 
-## fine-grained memory state analysis
+## Experiment 2: fine-grained memory state analysis
 We configured the Docker image to run the analysis on a limited subset of mutants that showcase the assertion candidates' characteristics. 
-Additionally, the Docker image includes the full dataset used to present results addressing RQ2–4 in the paper.
+Additionally, the Docker image includes the FULL dataset used to present results addressing RQ2–4 in the paper.
 
 Please note that the complete analysis requires approximately 1 TB of disk space and may take several weeks to fully execute.
 ### ARM-based machines
