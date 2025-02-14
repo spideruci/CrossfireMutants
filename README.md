@@ -23,7 +23,9 @@ However, please note that reproducing all experimental data may require several 
 
 **Hardware**: At least 10GB of free disk space for the Docker container. We provide Docker images compatible with both AMD and ARM-based architectures (e.g., MacBook with an M1 chip).
 
-**Software**: Docker and Python 3 installed on user machine; linux or macOS operating system.
+**Software**: Docker and Python 3 (with matplotlib, pandas, seaborn libraries required) installed on the user machine; Linux or macOS operating system.
+
+**Network**: Network Connection Required.
 
 
 # Usage
@@ -73,6 +75,14 @@ docker cp exp1_arm:/commons-cli/project/target/csvData.csv .
 ```
 The csvData.csv file contains the raw data of the analysis.
 
+We also included scripts for generating figures related to RQ1, using data from all subjects.  
+Please note that these heatmap scripts are tailored to existing data for specific subjects and are not generalizable to other datasets. (~3min, matplotlib, pandas, seaborn libraries are required to run Python scripts)
+```
+docker cp exp1_arm:/data .
+cd data
+python3 getFigures.py
+```
+This generates a series of PDF figures in the current working directory addressing RQ1.
 
 #### AMD-based machines
 pull the Docker image:
@@ -88,6 +98,16 @@ Acquiring the csv file to the current path:
 docker cp exp1_amd:/commons-cli/project/target/csvData.csv .
 ```
 The csvData.csv file contains the raw data of the analysis rendering figures presented in RQ1.
+
+We also included scripts for generating figures related to RQ1, using data from all subjects.  
+Please note that these heatmap scripts are tailored to existing data for specific subjects and are not generalizable to other datasets. (~3min, matplotlib, pandas, seaborn libraries are required to run Python scripts)
+```
+docker cp exp1_amd:/data .
+cd data
+python3 getFigures.py
+```
+This generates a series of PDF figures in the current working directory addressing RQ1.
+
 
 ## Experiment 2: fine-grained memory state analysis
 We configured the Docker image to run the analysis on a limited subset of mutants that showcase the assertion candidates' characteristics. 
