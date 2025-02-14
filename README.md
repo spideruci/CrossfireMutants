@@ -106,7 +106,7 @@ docker run --name exp2_arm qinfendeheichi/icse2025_text-arm
 Fetch the produced intermediate data to host machine (30s):
 ```
 docker cp exp2_arm:/commons-text/project/target .
-docker cp exp2_arm:/commons-text/project/getData.py 
+docker cp exp2_arm:/commons-text/project/getData.py .
 ```
 Inspect Mutant Killing Status and Characteristics of Mutant Killing Assertion Candidates:
 ```
